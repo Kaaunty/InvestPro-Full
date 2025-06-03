@@ -1,0 +1,32 @@
+// prisma/schema.prisma
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+model Client {
+  id     Int     @id @default(autoincrement())
+  name   String
+  email  String @unique
+  status String
+  clientAssets ClientAsset[]
+}
+
+model Asset {
+  id     Int    @id @default(autoincrement())
+  nome   String
+  tipo   String
+  valor  Float
+  clientAssets ClientAsset[]
+}
+
+model ClientAsset {
+  id        Int    @id @default(autoincrement())
+  clientId  Int
+  assetId   Int
+  client    Client @relation(fields: [clientId], references: [id])
+  asset     Asset  @relation(fields: [assetId], references: [id])
+}

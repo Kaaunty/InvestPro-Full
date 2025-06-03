@@ -1,0 +1,41 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.*
+
+# Prisma
+prisma/dev.db
+prisma/.env
+
+# VSCode
+.vscode/
+
+# Docker
+*.pid
+db_data/
+
+# Logs
+logs/
+*.log
+
+# Build
+build/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Others
+coverage/
+*.sqlite
+*.sqlite3
+*.tgz
+
+# Prisma migrations
+prisma/migrations/*/README.md

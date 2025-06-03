@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: S3cur3P@ssw0rd
+      MYSQL_DATABASE: investment_office
+      MYSQL_USER: root
+      MYSQL_PASSWORD: S3cur3P@ssw0rd
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: mysql://root:S3cur3P@ssw0rd@db:3306/investment_office
+    depends_on:
+      - db
+volumes:
+  db_data:
